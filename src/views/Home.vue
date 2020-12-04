@@ -1,18 +1,33 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <vue-modal @open="open" @close="close"></vue-modal>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import VueModal from '@/components/VueModal.vue'
+import { useStore, mapGetters, onMounted} from 'vuex'
 
 export default {
   name: 'Home',
+  setup(props) {
+    const store = useStore()
+    store.dispatch('SetUser', { name: 'jason' })
+    return {
+      store
+    }
+  },
   components: {
-    HelloWorld
+    VueModal
+  },
+  methods: {
+    open(value) {
+      console.log('opened', value)
+    },
+    close(value) {
+      console.log('closed', value)
+    }
   }
 }
 </script>

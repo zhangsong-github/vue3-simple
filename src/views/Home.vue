@@ -11,6 +11,9 @@ import { useStore, mapGetters, onMounted} from 'vuex'
 
 export default {
   name: 'Home',
+  components: {
+    VueModal
+  },
   setup(props) {
     const store = useStore()
     store.dispatch('SetUser', { name: 'jason' })
@@ -18,8 +21,8 @@ export default {
       store
     }
   },
-  components: {
-    VueModal
+  mounted() {
+    // console.log(this.$store)
   },
   methods: {
     open(value) {
